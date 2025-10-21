@@ -1,0 +1,36 @@
+name: Dev Deploy via Docker Compose
+
+on:
+  push:
+    branches:
+      - main  # only deploys when main is updated
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Copy repo to VPS and deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /srv/app
+            echo "Pulling latest code..."
+            git fetch origin main
+            git reset --hard origin/main
+
+            echo "Rebuilding containers..."
+            docker compose down
+            docker compose pull || true
+            docker compose build --no-cache
+            docker compose up -d
+
+            echo "Cleanup old images..."
+            docker image prune -f
+            echo "Deployment completed."
