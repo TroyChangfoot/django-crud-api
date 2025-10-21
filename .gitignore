@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Django
+db.sqlite3
+db.sqlite3-journal
+/media/
+staticfiles/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Docker
+postgres_data/
+*.pid
+*.log
+
+# Build and packaging
+*.egg-info/
+dist/
+build/
+
+# IDE / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

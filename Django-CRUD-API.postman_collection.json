@@ -1,0 +1,245 @@
+{
+	"info": {
+		"_postman_id": "1547464b-1246-4f5c-9da6-383710080d8a",
+		"name": "Django CRUD API",
+		"description": "Postman collection for Django CRUD API (Products, Customers, Orders) with JWT authentication.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49432193",
+		"_collection_link": "https://cooperagile-3973761.postman.co/workspace/Troy-Changfoot's-Workspace~e6e35ea0-8e79-43c4-8175-9d6a65700cf7/collection/49432193-1547464b-1246-4f5c-9da6-383710080d8a?action=share&source=collection_link&creator=49432193"
+	},
+	"item": [
+		{
+			"name": "Auth - Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"demo_user\",\n  \"email\": \"demo@example.com\",\n  \"password\": \"StrongPass123\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/auth/register/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth - Obtain Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"demo_user\",\n  \"password\": \"StrongPass123\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/token/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"token",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth - User  (Current User)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/auth/me/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"me",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Products - List",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/products/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Products - Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Hammer\",\n  \"sku\": \"HAM123\",\n  \"price\": 99.99,\n  \"stock\": 50,\n  \"description\": \"Heavy-duty steel hammer\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/products/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customers - Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"email\": \"john@example.com\",\n  \"phone\": \"+27123456789\",\n  \"address\": \"123 Main St\",\n  \"city\": \"Cape Town\",\n  \"country\": \"South Africa\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/customers/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"customers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Orders - Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"customer\": 1,\n  \"status\": \"pending\",\n  \"items\": [\n    {\"product\": 1, \"quantity\": 2},\n    {\"product\": 3, \"quantity\": 1}\n  ]\n}\n"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/orders/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Docs (Swagger)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/docs/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"docs",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000"
+		},
+		{
+			"key": "access_token",
+			"value": ""
+		}
+	]
+}
