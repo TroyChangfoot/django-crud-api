@@ -13,6 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Debug secrets
+        run: |
+          echo "SSH_HOST is: ${{ secrets.SSH_HOST }}"
+          echo "SSH_USER is: ${{ secrets.SSH_USER }}"
+          echo "SSH_KEY length: $(echo "${{ secrets.SSH_KEY }}" | wc -c)"  
+
       - name: Copy repo to VPS and deploy
         uses: appleboy/ssh-action@v1.0.3
         with:
