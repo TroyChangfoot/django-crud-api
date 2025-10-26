@@ -191,3 +191,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
+
+# Local overrides (optional)
+try:
+    from .local_settings import *
+except ImportError:
+    pass

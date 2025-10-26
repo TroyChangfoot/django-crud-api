@@ -11,6 +11,9 @@ db.sqlite3-journal
 /media/
 staticfiles/
 
+# settings overrides
+local_settings.py
+
 # Virtual environments
 venv/
 .venv/
